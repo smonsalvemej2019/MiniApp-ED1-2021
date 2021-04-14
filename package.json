@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/smonsalvemej2019/MiniApp-ED1-2021/issues"
   },
-  "homepage": "https://github.com/smonsalvemej2019/MiniApp-ED1-2021#readme"
+  "homepage": "https://github.com/smonsalvemej2019/MiniApp-ED1-2021#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
