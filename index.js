@@ -2,6 +2,7 @@ const express = require("express");
 const moment = require("moment");
 const mysql = require("mysql");
 const config = require("./config");
+var exphbs  = require('express-handlebars');
 
 //console.log(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
 
@@ -14,20 +15,22 @@ app.use('/api/request', require('./routes/api/router'));
 
 const con = mysql.createConnection(config.database);
 
-con.connect((err)=>{
+/*con.connect((err)=>{
     if(err) throw err
-    console.log("Connected to database");
-    var sql = "INSERT INTO customers (name, address) VALUES ('Company Inc', 'Highway 37')";
-    con.query(sql, function (err, result) {
+    con.query("SELECT * FROM customers", function (err, result, fields) {
         if (err) throw err;
-        console.log("1 record inserted");
-      });
+        console.log(JSON.stringify(result));
+    });
 
-})
+})*/
 
+console.log(exphbs);
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
-
-
+app.get('/',(req,res)=>res.render('home',{
+    title: "Switch The Light",
+}));
 
 
 //server listener
