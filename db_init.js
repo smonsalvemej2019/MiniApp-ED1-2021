@@ -5,7 +5,15 @@ const con = mysql.createConnection(config.database);
 con.connect((error)=>{
     if (error) throw error;
     console.log('connected');
-    con.query();
+
+    con.query(
+
+    );
 })
 
 //con.end();
+
+/*create table UserTable (
+    name varchar(255),
+    insertDate datetime default now()
+  );*/
