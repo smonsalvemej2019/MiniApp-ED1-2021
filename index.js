@@ -3,11 +3,12 @@ const moment = require("moment");
 const mysql = require("mysql");
 const config = require("./config");
 var exphbs  = require('express-handlebars');
+const path = require('path');
 
 //console.log(moment().format("dddd, MMMM Do YYYY, h:mm:ss a"));
 
 app = express(); //server
-
+app.use(express.static(path.join(__dirname, '/public')));
 //Middleware and api
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
