@@ -3,6 +3,8 @@ const config = require("./config");
 const PreCon = mysql.createConnection(config.predatabase);
 const con = mysql.createConnection(config.database);
 
+let dataSetUp = new Promise((tryNext)=>
+{
 PreCon.connect((err)=>{
     try{
     if (err) throw err;
@@ -11,9 +13,9 @@ PreCon.connect((err)=>{
     con.query("CREATE DATABASE my_db", (err,result) =>{
         try{
         if (err) throw err;
-        console.log('Database created')
+        console.log('Database created');
         }catch(err){
-            console.log('Database already exists')
+            console.log('Database already exists');
         }
     })
 }catch(err){
@@ -22,7 +24,11 @@ PreCon.connect((err)=>{
     PreCon.end();
 }
 });
+tryNext();
+})
 
+dataSetUp.then(()=>
+{
 con.connect((err)=>{
     try{
         if (err) throw err;
@@ -36,7 +42,16 @@ con.connect((err)=>{
             }
         })
     }catch(err){
+        console.log('still unable 2');
     }finally{
         con.end();
     }
 });
+})
+let aPromise = new Promise((next,nextnext)=>{
+    console.log('hello');
+    next();
+    nextnext();
+});
+
+aPromise.then(()=>console.log('world'), ()=>console.log('oh wow'));
