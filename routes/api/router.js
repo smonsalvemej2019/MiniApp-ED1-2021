@@ -9,16 +9,11 @@ router.get('/', (req,res) => {
 router.post('/', (req,res)=>{
 
     newAdd ={
-        name: req.body.name,
-        time: moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
+        name: req.body.name
     }
 
     console.log(newAdd);
-    if(!newAdd.name){
-        return res.status(400).json({msg: 'please input a name'})
-    }
-
-    res.json(newAdd);
+    res.redirect('/');
 
 })
 
