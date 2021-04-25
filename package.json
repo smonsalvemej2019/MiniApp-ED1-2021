@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prestart": "node db_init",
     "start": "node index",
     "dev": "nodemon index"
   },

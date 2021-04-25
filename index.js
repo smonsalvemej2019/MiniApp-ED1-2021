@@ -16,22 +16,30 @@ app.use('/api/request', require('./routes/api/router'));
 
 const con = mysql.createConnection(config.database);
 
-/*con.connect((err)=>{
-    if(err) throw err
-    con.query("SELECT * FROM customers", function (err, result, fields) {
-        if (err) throw err;
-        console.log(JSON.stringify(result));
-    });
-
-})*/
 
 console.log(exphbs);
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+app.get('/',(req,res)=>{
+    
 
-app.get('/',(req,res)=>res.render('home',{
-    title: "Switch The Light",
-}));
+        const query = "SELECT * FROM `UserTable` ORDER BY insertDate DESC LIMIT 5";
+        con.query(query, (err,result)=>{
+            try{
+            if(err) throw err;
+            console.log(JSON.stringify(result));
+            res.render('home',{title: "Switch The Light", results:result});
+            }catch(err){
+                result = {name:"Error", insertDate:"Please Check Database"};
+                res.render('home',{title: "Switch The Light", results:result});
+            }
+        })
+
+//res.render('home',{title: "Switch The Light", data:results});
+    
+    
+
+});
 
 
 //server listener
