@@ -10,7 +10,7 @@ PreCon.connect((err)=>{
     if (err) throw err;
     console.log('Connected');
 
-    con.query("CREATE DATABASE my_db", (err,result) =>{
+    PreCon.query("CREATE DATABASE my_db", (err,result) =>{
         try{
         if (err) throw err;
         console.log('Database created');
@@ -42,16 +42,9 @@ con.connect((err)=>{
             }
         })
     }catch(err){
-        console.log('still unable 2');
+        console.log(err);
     }finally{
         con.end();
     }
 });
 })
-let aPromise = new Promise((next,nextnext)=>{
-    console.log('hello');
-    next();
-    nextnext();
-});
-
-aPromise.then(()=>console.log('world'), ()=>console.log('oh wow'));
