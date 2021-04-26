@@ -1,13 +1,17 @@
 const config ={
     PORT: process.env.PORT,
     predatabase:{
-        host: 'localhost',
-        user: 'root'
+        host: process.env.RDS_HOSTNAME,
+        user: process.env.RDS_USERNAME,
+        password : process.env.RDS_PASSWORD,
+        port: process.env.RDS_PORT
     },
     database:{
-        host: 'localhost',
-        user: 'root',
-        database: 'my_db'
+    host: process.env.RDS_HOSTNAME,
+    user: process.env.RDS_USERNAME,
+    password : process.env.RDS_PASSWORD,
+    port: process.env.RDS_PORT,
+    database: process.env.RDS_DB_NAME
     }
 }
 
