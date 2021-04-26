@@ -1,5 +1,5 @@
 const config ={
-    PORT: 5000 || process.env.PORT,
+    PORT: process.env.PORT,
     predatabase:{
         host: 'localhost',
         user: 'root'
